@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  */
 
-package com.twitter.twitter.ui;
+package com.mvcoding.twitter.ui;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

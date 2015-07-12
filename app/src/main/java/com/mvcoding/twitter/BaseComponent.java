@@ -1,4 +1,4 @@
-package com.twitter.twitter;
+package com.mvcoding.twitter;
 
 public interface BaseComponent {
 }

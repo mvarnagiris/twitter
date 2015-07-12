@@ -1,4 +1,4 @@
-package com.twitter.twitter;
+package com.mvcoding.twitter;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package com.twitter.twitter.ui;
+package com.mvcoding.twitter.ui;
 
 import android.app.Activity;
 import android.content.Context;

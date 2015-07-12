@@ -1,4 +1,4 @@
-package com.twitter.twitter.ui;
+package com.mvcoding.twitter.ui;
 
 public interface PresenterView {
 }

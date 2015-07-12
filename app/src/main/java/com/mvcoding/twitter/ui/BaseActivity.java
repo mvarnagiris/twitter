@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  */
 
-package com.twitter.twitter.ui;
+package com.mvcoding.twitter.ui;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -22,9 +22,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.twitter.twitter.App;
-import com.twitter.twitter.BaseComponent;
-import com.twitter.twitter.R;
+import com.mvcoding.twitter.App;
+import com.mvcoding.twitter.BaseComponent;
+import com.mvcoding.twitter.R;
 
 import java.util.UUID;
 

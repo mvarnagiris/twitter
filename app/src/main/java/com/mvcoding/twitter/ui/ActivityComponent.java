@@ -12,9 +12,14 @@
  * GNU General Public License for more details.
  */
 
-package com.twitter.twitter.ui;
+package com.mvcoding.twitter.ui;
 
-import dagger.Module;
+import com.mvcoding.twitter.BaseComponent;
+import com.mvcoding.twitter.ui.splash.SplashComponent;
+import com.mvcoding.twitter.ui.splash.SplashModule;
 
-@Module public class ActivityModule {
+import dagger.Subcomponent;
+
+@ActivityScope @Subcomponent(modules = ActivityModule.class) public interface ActivityComponent extends BaseComponent {
+    SplashComponent plus(SplashModule module);
 }

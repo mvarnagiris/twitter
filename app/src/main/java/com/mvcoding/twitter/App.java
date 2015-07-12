@@ -1,8 +1,10 @@
-package com.twitter.twitter;
+package com.mvcoding.twitter;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.mvcoding.twitter.api.ApiModule;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +27,7 @@ public class App extends Application {
                                               .setFontAttrId(R.attr.fontPath)
                                               .build());
 
-        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).apiModule(new ApiModule()).build();
     }
 
     public AppComponent getComponent() {

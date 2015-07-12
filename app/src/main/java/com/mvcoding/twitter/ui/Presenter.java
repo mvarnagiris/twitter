@@ -1,4 +1,4 @@
-package com.twitter.twitter.ui;
+package com.mvcoding.twitter.ui;
 
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
