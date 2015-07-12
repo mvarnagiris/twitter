@@ -1,5 +1,7 @@
 package com.mvcoding.twitter.ui.splash;
 
+import android.support.annotation.NonNull;
+
 import com.mvcoding.twitter.api.Session;
 import com.mvcoding.twitter.ui.BasePresenterTest;
 
@@ -13,11 +15,11 @@ import static org.mockito.Mockito.when;
 public class SplashPresenterTest extends BasePresenterTest<SplashPresenter, SplashPresenter.View> {
     @Mock private Session session;
 
-    @Override protected SplashPresenter createPresenter() {
+    @NonNull @Override protected SplashPresenter createPresenter() {
         return new SplashPresenter(session);
     }
 
-    @Override protected SplashPresenter.View createView() {
+    @NonNull @Override protected SplashPresenter.View createView() {
         return mock(SplashPresenter.View.class);
     }
 

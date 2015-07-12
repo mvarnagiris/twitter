@@ -51,9 +51,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter.View, LoginCompon
         return this;
     }
 
-    @NonNull @Override public Observable<Uri> onVerifierUriProvided(@NonNull Uri uri) {
+    @NonNull @Override public Observable<Uri> onVerifierUriProvided(@NonNull String uri) {
         if (!verifierSubject.hasValue()) {
-            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(uri)));
         }
 
         return verifierSubject;

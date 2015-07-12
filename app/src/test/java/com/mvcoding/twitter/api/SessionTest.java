@@ -21,16 +21,15 @@ public class SessionTest extends BaseTest {
     }
 
     @Test public void isLoggedIn_returnsTrue_whenTokenIsNotEmpty() throws Exception {
-        session.setToken("token");
+        session.setToken("token", "tokenSecret");
 
         assertThat(session.isLoggedIn()).isTrue();
     }
 
     @Test public void isLoggedIn_returnsFalse_whenTokenIsNullOrEmpty() throws Exception {
-        session.setToken(null);
         assertThat(session.isLoggedIn()).isFalse();
 
-        session.setToken("");
+        session.setToken("", "");
         assertThat(session.isLoggedIn()).isFalse();
     }
 }

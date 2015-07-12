@@ -73,7 +73,7 @@ import twitter4j.auth.RequestToken;
     }
 
     @NonNull private Observable<VerifierData> getVerifierData(@NonNull View view, @NonNull RequestToken requestToken) {
-        return view.onVerifierUriProvided(Uri.parse(requestToken.getAuthenticationURL())).map(uri -> {
+        return view.onVerifierUriProvided(requestToken.getAuthenticationURL()).map(uri -> {
             if (uri != null && uri.toString().startsWith(CALLBACK_URL)) {
                 return new VerifierData(requestToken, uri.getQueryParameter(VERIFIER_QUERY_PARAM));
             } else {
@@ -101,7 +101,7 @@ import twitter4j.auth.RequestToken;
     }
 
     public interface View extends PresenterView, ErrorPresenterView, CloseablePresenterView {
-        @NonNull Observable<Uri> onVerifierUriProvided(@NonNull Uri uri);
+        @NonNull Observable<Uri> onVerifierUriProvided(@NonNull String uri);
         void startTweetsAndClose();
     }
 
