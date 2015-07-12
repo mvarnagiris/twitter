@@ -60,4 +60,22 @@
         <item name="fontPath">fonts/Roboto-Medium.ttf</item>
     </style>
 
+    <!-- CardView -->
+    <!-- =============================================================================================================================== -->
+
+    <style name="Card" parent="CardView">
+        <item name="cardBackgroundColor">?backgroundPrimary</item>
+    </style>
+
+    <!-- RecyclerView -->
+    <!-- =============================================================================================================================== -->
+
+    <style name="RecyclerView">
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="RecyclerView.Cards">
+        <item name="android:padding">@dimen/keyline_quarter</item>
+    </style>
+
 </resources>

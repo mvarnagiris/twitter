@@ -69,6 +69,7 @@ import twitter4j.auth.RequestToken;
             }
         }));
 
+        requestTokenObservable = requestTokenObservable.cache();
         return requestTokenObservable;
     }
 
@@ -97,6 +98,7 @@ import twitter4j.auth.RequestToken;
             }
         }));
 
+        accessTokenObservable = accessTokenObservable.cache();
         return accessTokenObservable;
     }
 

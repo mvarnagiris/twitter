@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    style="@style/Card"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/recycler_card_space"
+    app:contentPadding="@dimen/keyline_half">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/photoImageView"
+            android:layout_width="@dimen/tweet_user_photo_size"
+            android:layout_height="@dimen/tweet_user_photo_size"
+            android:layout_marginRight="@dimen/space_normal"
+            android:scaleType="centerCrop"
+            tools:background="#ddd"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/space_normal"
+            android:layout_toRightOf="@+id/photoImageView"
+            android:textAppearance="@style/Text.Body2"
+            tools:ignore="RtlHardcoded"
+            tools:text="User Name" />
+
+        <TextView
+            android:id="@+id/usernameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameTextView"
+            android:layout_toRightOf="@+id/photoImageView"
+            android:textAppearance="@style/Text.Caption"
+            android:textColor="?android:textColorSecondary"
+            tools:ignore="RtlHardcoded"
+            tools:text="\@username" />
+
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/usernameTextView"
+            android:gravity="right"
+            android:textAppearance="@style/Text.Body1"
+            android:textColor="?android:textColorSecondary"
+            tools:ignore="RtlHardcoded"
+            tools:text="5 minutes ago" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/usernameTextView"
+            android:layout_marginTop="@dimen/space_normal"
+            android:layout_toRightOf="@id/photoImageView"
+            android:textAppearance="@style/Text.Subhead"
+            tools:text="Bacon and cheese sandwich #nofilter #nomakeup." />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
