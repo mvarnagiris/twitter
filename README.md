@@ -1,3 +1,5 @@
+You will need java 8 and `23.0.0 rc3` build tools.
+
 # Known issues
 - `FloatingActionButton` position on pre-Lollipop devices is a bit messed up.
 - Tests for TweetsActivity and CreateTweetActivity are not done.
