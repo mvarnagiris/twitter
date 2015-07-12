@@ -4,6 +4,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 
 import rx.Subscription;
+import rx.functions.Action1;
 import rx.subscriptions.CompositeSubscription;
 
 public class Presenter<V extends PresenterView> {
@@ -34,5 +35,12 @@ public class Presenter<V extends PresenterView> {
             subscriptions = new CompositeSubscription();
         }
         subscriptions.add(subscription);
+    }
+
+    @NonNull
+    protected Action1<Throwable> handleFatalError(@NonNull ErrorPresenterView errorPresenterView, @NonNull CloseablePresenterView closeablePresenterView) {
+        return throwable -> errorPresenterView.showError(throwable, ErrorPresenterView.ErrorMode.Toast)
+                .doOnNext(errorAction -> closeablePresenterView.close())
+                .subscribe();
     }
 }

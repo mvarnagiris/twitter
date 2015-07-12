@@ -17,6 +17,8 @@ package com.mvcoding.twitter.ui;
 import com.mvcoding.twitter.BaseComponent;
 import com.mvcoding.twitter.ui.splash.SplashComponent;
 import com.mvcoding.twitter.ui.splash.SplashModule;
+import com.mvcoding.twitter.ui.tweet.TweetsComponent;
+import com.mvcoding.twitter.ui.tweet.TweetsModule;
 import com.mvcoding.twitter.ui.user.LoginComponent;
 import com.mvcoding.twitter.ui.user.LoginModule;
 
@@ -25,4 +27,5 @@ import dagger.Subcomponent;
 @ActivityScope @Subcomponent(modules = ActivityModule.class) public interface ActivityComponent extends BaseComponent {
     SplashComponent plus(SplashModule module);
     LoginComponent plus(LoginModule module);
+    TweetsComponent plus(TweetsModule module);
 }

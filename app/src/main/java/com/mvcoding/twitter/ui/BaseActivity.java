@@ -21,6 +21,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.mvcoding.twitter.App;
 import com.mvcoding.twitter.BaseComponent;
@@ -31,8 +33,9 @@ import java.util.UUID;
 import butterknife.ButterKnife;
 import icepick.Icepick;
 import icepick.Icicle;
+import rx.Observable;
 
-public abstract class BaseActivity<V extends PresenterView, C extends BaseComponent> extends AppCompatActivity implements CloseablePresenterView {
+public abstract class BaseActivity<V extends PresenterView, C extends BaseComponent> extends AppCompatActivity implements ErrorPresenterView, CloseablePresenterView {
     @Icicle String componentKey;
 
     @LayoutRes protected abstract int getLayoutId();
@@ -59,6 +62,17 @@ public abstract class BaseActivity<V extends PresenterView, C extends BaseCompon
 
         if (isFinishing()) {
             App.with(this).removeComponent(componentKey);
+        }
+    }
+
+    @NonNull @Override public Observable<ErrorAction> showError(@NonNull Throwable throwable, @NonNull ErrorMode errorMode) {
+        Log.e(BaseActivity.class.getSimpleName(), "Showing error with " + errorMode, throwable);
+        switch (errorMode) {
+            case Toast:
+                Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+                return Observable.just(new ErrorAction());
+            default:
+                throw new IllegalArgumentException("ErrorMode " + errorMode + " is not supported.");
         }
     }
 

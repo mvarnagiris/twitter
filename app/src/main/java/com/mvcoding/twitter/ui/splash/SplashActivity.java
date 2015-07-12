@@ -6,6 +6,7 @@ import com.mvcoding.twitter.R;
 import com.mvcoding.twitter.ui.ActivityComponent;
 import com.mvcoding.twitter.ui.BaseActivity;
 import com.mvcoding.twitter.ui.Presenter;
+import com.mvcoding.twitter.ui.tweet.TweetsActivity;
 import com.mvcoding.twitter.ui.user.LoginActivity;
 
 import javax.inject.Inject;
@@ -34,7 +35,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter.View, SplashCom
     }
 
     @Override public void startTweetsAndClose() {
-        // TODO: Start tweets.
+        TweetsActivity.start(this);
         close();
     }
 

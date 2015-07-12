@@ -1,7 +1,6 @@
 package com.mvcoding.twitter.api;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.mvcoding.twitter.util.PreferencesHelper;
 
@@ -11,6 +10,7 @@ import javax.inject.Singleton;
     transient PreferencesHelper preferencesHelper;
 
     private String token;
+    private String tokenSecret;
 
     private static void persist(@NonNull PreferencesHelper preferencesHelper, @NonNull Session session) {
         preferencesHelper.put(Session.class.getName(), session);
@@ -20,17 +20,23 @@ import javax.inject.Singleton;
         return token;
     }
 
-    public void setToken(@Nullable String token) {
+    public String getTokenSecret() {
+        return tokenSecret;
+    }
+
+    public void setToken(@NonNull String token, @NonNull String tokenSecret) {
         this.token = token;
+        this.tokenSecret = tokenSecret;
         persist(preferencesHelper, this);
     }
 
     public boolean isLoggedIn() {
-        return token != null && !token.isEmpty();
+        return token != null && !token.isEmpty() && tokenSecret != null && !tokenSecret.isEmpty();
     }
 
     public void clear() {
         token = null;
+        tokenSecret = null;
         persist(preferencesHelper, this);
     }
 }
