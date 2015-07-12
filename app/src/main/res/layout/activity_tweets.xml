@@ -16,11 +16,26 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        style="@style/RecyclerView.Cards"
+    <com.mvcoding.twitter.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            style="@style/RecyclerView.Cards"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.mvcoding.twitter.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Button.Fab"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/keyline"
+        android:src="@drawable/ic_action_add"
+        android:theme="?themeInverse" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -60,6 +60,16 @@
         <item name="fontPath">fonts/Roboto-Medium.ttf</item>
     </style>
 
+    <!-- Button -->
+    <!-- =============================================================================================================================== -->
+
+    <style name="Button.Fab" parent="Widget.Design.FloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:tint">?colorActionIcon</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+
     <!-- CardView -->
     <!-- =============================================================================================================================== -->
 

@@ -3,6 +3,7 @@ package com.mvcoding.twitter.ui.tweet;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
 import com.mvcoding.twitter.R;
@@ -25,6 +26,7 @@ import twitter4j.Status;
 public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsComponent> implements TweetsPresenter.View {
     private final PublishSubject<RefreshEvent> refreshSubject = PublishSubject.create();
 
+    @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.recyclerView) RecyclerView recyclerView;
 
     @Inject TweetsPresenter presenter;
@@ -47,6 +49,7 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
         RecyclerViewUtils.setupGrid(recyclerView, layout);
         adapter = new TweetsAdapter();
         recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setOnRefreshListener(() -> refreshSubject.onNext(new RefreshEvent(true)));
     }
 
     @NonNull @Override protected TweetsComponent createComponent(@NonNull ActivityComponent component) {
@@ -83,6 +86,6 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
     }
 
     @Override public void setRefreshing(boolean refreshing) {
-        // TODO: Implement.
+        swipeRefreshLayout.setRefreshing(refreshing);
     }
 }
