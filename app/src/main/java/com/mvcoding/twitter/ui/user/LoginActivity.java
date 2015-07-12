@@ -12,48 +12,43 @@
  * GNU General Public License for more details.
  */
 
-package com.mvcoding.twitter.ui.splash;
+package com.mvcoding.twitter.ui.user;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.mvcoding.twitter.R;
 import com.mvcoding.twitter.ui.ActivityComponent;
+import com.mvcoding.twitter.ui.ActivityStarter;
 import com.mvcoding.twitter.ui.BaseActivity;
 import com.mvcoding.twitter.ui.Presenter;
-import com.mvcoding.twitter.ui.user.LoginActivity;
 
 import javax.inject.Inject;
 
-public class SplashActivity extends BaseActivity<SplashPresenter.View, SplashComponent> implements SplashPresenter.View {
-    @Inject SplashPresenter presenter;
+public class LoginActivity extends BaseActivity<LoginPresenter.View, LoginComponent> implements LoginPresenter.View {
+    @Inject LoginPresenter presenter;
+
+    public static void start(@NonNull Context context) {
+        ActivityStarter.with(context, LoginActivity.class).enableTransition().start();
+    }
 
     @Override protected int getLayoutId() {
-        return R.layout.activity_splash;
+        return R.layout.activity_login;
     }
 
-    @NonNull @Override protected SplashComponent createComponent(@NonNull ActivityComponent component) {
-        return component.plus(new SplashModule());
+    @NonNull @Override protected LoginComponent createComponent(@NonNull ActivityComponent component) {
+        return component.plus(new LoginModule());
     }
 
-    @Override protected void inject(@NonNull SplashComponent component) {
+    @Override protected void inject(@NonNull LoginComponent component) {
         component.inject(this);
     }
 
-    @NonNull @Override protected Presenter<SplashPresenter.View> getPresenter() {
+    @NonNull @Override protected Presenter<LoginPresenter.View> getPresenter() {
         return presenter;
     }
 
-    @NonNull @Override protected SplashPresenter.View getPresenterView() {
+    @NonNull @Override protected LoginPresenter.View getPresenterView() {
         return this;
-    }
-
-    @Override public void startTweetsAndClose() {
-        // TODO: Start tweets.
-        close();
-    }
-
-    @Override public void startLoginAndClose() {
-        LoginActivity.start(this);
-        close();
     }
 }
