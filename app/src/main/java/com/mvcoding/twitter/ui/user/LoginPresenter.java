@@ -48,8 +48,8 @@ import twitter4j.auth.RequestToken;
                                     .observeOn(ioScheduler)
                                     .flatMap(this::getAccessToken)
                                     .observeOn(uiScheduler)
-                                    .doOnNext(accessToken -> session.setToken(accessToken.getToken(), accessToken.getTokenSecret()))
                                     .doOnNext(twitter::setOAuthAccessToken)
+                                    .doOnNext(accessToken -> session.setToken(accessToken.getToken(), accessToken.getTokenSecret()))
                                     .subscribeOn(ioScheduler)
                                     .subscribe(accessToken -> view.startTweetsAndClose(), handleFatalError(view, view)));
     }

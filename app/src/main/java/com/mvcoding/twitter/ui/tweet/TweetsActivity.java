@@ -91,7 +91,7 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
     }
 
     @NonNull @Override public Observable<Status> startCreateTweet() {
-        CreateTweetActivity.startForResult(this, REQUEST_NEW_TWEET);
+        CreateTweetActivity.startForResult(this, REQUEST_NEW_TWEET, fab);
         return statusSubject.doOnCompleted(() -> statusSubject = ReplaySubject.create());
     }
 

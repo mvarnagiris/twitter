@@ -23,7 +23,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter.View, LoginCompon
     @Inject LoginPresenter presenter;
 
     public static void start(@NonNull Context context) {
-        ActivityStarter.with(context, LoginActivity.class).start();
+        ActivityStarter.with(context, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP).start();
     }
 
     @Override protected int getLayoutId() {

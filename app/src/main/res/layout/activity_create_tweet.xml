@@ -37,7 +37,8 @@
             android:layout_marginTop="@dimen/fab_size_half_negative"
             android:src="@drawable/ic_action_send"
             android:theme="?themeInverse"
-            tools:ignore="RtlHardcoded" />
+            android:transitionName="@string/transition_name_fab"
+            tools:ignore="RtlHardcoded,UnusedAttribute" />
 
     </RelativeLayout>
 

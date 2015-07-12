@@ -2,8 +2,12 @@ package com.mvcoding.twitter.ui.tweet;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.EditText;
 
 import com.mvcoding.twitter.R;
@@ -28,8 +32,8 @@ public class CreateTweetActivity extends BaseActivity<CreateTweetPresenter.View,
 
     @Inject CreateTweetPresenter presenter;
 
-    public static void startForResult(@NonNull Context context, int requestCode) {
-        ActivityStarter.with(context, CreateTweetActivity.class).startForResult(requestCode);
+    public static void startForResult(@NonNull Context context, int requestCode, @Nullable View... sharedViews) {
+        ActivityStarter.with(context, CreateTweetActivity.class).enableTransition(sharedViews).startForResult(requestCode);
     }
 
     public static Status getResultExtraStatus(@NonNull Intent data) {
@@ -38,6 +42,12 @@ public class CreateTweetActivity extends BaseActivity<CreateTweetPresenter.View,
 
     @Override protected int getLayoutId() {
         return R.layout.activity_create_tweet;
+    }
+
+    @Override protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        transitions().slide(Gravity.TOP, getToolbar(), messageEditText).sharedElementOverlay(false).asEnterTransition();
     }
 
     @NonNull @Override protected CreateTweetComponent createComponent(@NonNull ActivityComponent component) {
