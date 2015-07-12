@@ -19,6 +19,8 @@
         <item name="android:textColorPrimaryInverse">#ffffff</item>
         <item name="android:textColorSecondary">#727272</item>
         <item name="android:textColorSecondaryInverse">?colorPrimaryLight</item>
+        <item name="android:textColorHint">?android:textColorSecondary</item>
+        <item name="android:textColorHintInverse">?android:textColorSecondaryInverse</item>
 
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@color/window_background</item>
@@ -27,6 +29,7 @@
 
         <item name="android:progressBarStyle">@style/ProgressBar</item>
         <item name="android:scrollViewStyle">@style/ScrollView</item>
+        <item name="android:editTextStyle">@style/EditText</item>
     </style>
 
     <style name="AppTheme.Inverse">
@@ -47,5 +50,7 @@
     <style name="ScrollView">
         <item name="android:fillViewport">true</item>
     </style>
+
+    <style name="EditText" parent="Widget.AppCompat.EditText" />
 
 </resources>

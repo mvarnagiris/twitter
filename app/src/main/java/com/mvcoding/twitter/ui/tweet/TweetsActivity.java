@@ -3,6 +3,7 @@ package com.mvcoding.twitter.ui.tweet;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
@@ -24,10 +25,14 @@ import rx.subjects.PublishSubject;
 import twitter4j.Status;
 
 public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsComponent> implements TweetsPresenter.View {
+    private static final int REQUEST_NEW_TWEET = 1;
+
     private final PublishSubject<RefreshEvent> refreshSubject = PublishSubject.create();
+    private final PublishSubject<Status> statusSubject = PublishSubject.create();
 
     @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.recyclerView) RecyclerView recyclerView;
+    @Bind(R.id.fab) FloatingActionButton fab;
 
     @Inject TweetsPresenter presenter;
     @Inject Layout layout;
@@ -50,6 +55,7 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
         adapter = new TweetsAdapter();
         recyclerView.setAdapter(adapter);
         swipeRefreshLayout.setOnRefreshListener(() -> refreshSubject.onNext(new RefreshEvent(true)));
+        fab.setOnClickListener(v -> CreateTweetActivity.startForResult(this, REQUEST_NEW_TWEET));
     }
 
     @NonNull @Override protected TweetsComponent createComponent(@NonNull ActivityComponent component) {
@@ -68,9 +74,8 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
         return this;
     }
 
-    @NonNull @Override public Observable<Status> startCreateTweet() {
-        // TODO: Implement.
-        return null;
+    @NonNull @Override public Observable<Status> onTweetCreated() {
+        return statusSubject;
     }
 
     @Override public void showTweets(@NonNull List<Status> tweets) {
@@ -78,7 +83,8 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
     }
 
     @Override public void addTweet(@NonNull Status status) {
-        // TODO: Implement.
+        adapter.insertItem(status, 0);
+        recyclerView.scrollToPosition(0);
     }
 
     @NonNull @Override public Observable<RefreshEvent> onRefreshEvent() {

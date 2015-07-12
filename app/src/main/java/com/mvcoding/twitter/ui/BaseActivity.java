@@ -22,6 +22,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.mvcoding.twitter.App;
@@ -48,6 +49,15 @@ public abstract class BaseActivity<V extends PresenterView, C extends BaseCompon
         setupToolbar();
         ButterKnife.bind(this);
         getPresenter().onViewAttached(getPresenterView());
+    }
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override protected void onSaveInstanceState(Bundle outState) {

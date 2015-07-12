@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Twitter</string>
+    <string name="message">Message</string>
+    <string name="create_new_tweet">Create new tweet</string>
 </resources>

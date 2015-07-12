@@ -39,6 +39,10 @@
 
         <activity android:name=".ui.tweet.TweetsActivity" />
 
+        <activity
+            android:name=".ui.tweet.CreateTweetActivity"
+            android:label="@string/create_new_tweet" />
+
     </application>
 
 </manifest>

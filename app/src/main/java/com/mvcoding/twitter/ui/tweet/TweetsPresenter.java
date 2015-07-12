@@ -80,7 +80,7 @@ import twitter4j.TwitterException;
     }
 
     public interface View extends PresenterView, ErrorPresenterView, CloseablePresenterView, RefreshPresenterView {
-        @NonNull Observable<Status> startCreateTweet();
+        @NonNull Observable<Status> onTweetCreated();
         void showTweets(@NonNull List<Status> tweets);
         void addTweet(@NonNull Status status);
     }

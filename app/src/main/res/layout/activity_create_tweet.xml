@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <EditText
+            android:id="@+id/messageEditText"
+            style="@style/EditText.Big"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:background="?colorPrimary"
+            android:elevation="@dimen/elevation_toolbar"
+            android:hint="@string/message"
+            android:inputType="textCapSentences|textMultiLine"
+            android:minHeight="@dimen/actionbar_2x"
+            android:padding="@dimen/keyline"
+            android:theme="?themeInverse"
+            tools:ignore="UnusedAttribute" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            style="@style/Button.Fab"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/messageEditText"
+            android:layout_marginRight="@dimen/keyline"
+            android:layout_marginTop="@dimen/fab_size_half_negative"
+            android:src="@drawable/ic_action_send"
+            android:theme="?themeInverse"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+</ScrollView>
