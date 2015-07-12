@@ -1,6 +1,7 @@
 package com.mvcoding.twitter.ui.tweet;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -21,14 +22,15 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import rx.Observable;
+import rx.android.view.ViewObservable;
 import rx.subjects.PublishSubject;
+import rx.subjects.ReplaySubject;
 import twitter4j.Status;
 
 public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsComponent> implements TweetsPresenter.View {
     private static final int REQUEST_NEW_TWEET = 1;
 
     private final PublishSubject<RefreshEvent> refreshSubject = PublishSubject.create();
-    private final PublishSubject<Status> statusSubject = PublishSubject.create();
 
     @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.recyclerView) RecyclerView recyclerView;
@@ -38,6 +40,7 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
     @Inject Layout layout;
 
     private TweetsAdapter adapter;
+    private ReplaySubject<Status> statusSubject = ReplaySubject.create();
 
     public static void start(@NonNull Context context) {
         ActivityStarter.with(context, TweetsActivity.class).start();
@@ -55,7 +58,16 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
         adapter = new TweetsAdapter();
         recyclerView.setAdapter(adapter);
         swipeRefreshLayout.setOnRefreshListener(() -> refreshSubject.onNext(new RefreshEvent(true)));
-        fab.setOnClickListener(v -> CreateTweetActivity.startForResult(this, REQUEST_NEW_TWEET));
+    }
+
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_NEW_TWEET) {
+            if (resultCode == RESULT_OK) {
+                statusSubject.onNext(CreateTweetActivity.getResultExtraStatus(data));
+            }
+            statusSubject.onCompleted();
+        }
     }
 
     @NonNull @Override protected TweetsComponent createComponent(@NonNull ActivityComponent component) {
@@ -74,8 +86,13 @@ public class TweetsActivity extends BaseActivity<TweetsPresenter.View, TweetsCom
         return this;
     }
 
-    @NonNull @Override public Observable<Status> onTweetCreated() {
-        return statusSubject;
+    @NonNull @Override public Observable<Void> onCreateTweet() {
+        return ViewObservable.clicks(fab).map(onClickEvent -> null);
+    }
+
+    @NonNull @Override public Observable<Status> startCreateTweet() {
+        CreateTweetActivity.startForResult(this, REQUEST_NEW_TWEET);
+        return statusSubject.doOnCompleted(() -> statusSubject = ReplaySubject.create());
     }
 
     @Override public void showTweets(@NonNull List<Status> tweets) {

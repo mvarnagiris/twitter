@@ -23,7 +23,7 @@ class TweetsAdapter extends BaseAdapter<Status, TweetsAdapter.ViewHolder> {
 
     @Override protected void onBindViewHolder(ViewHolder holder, int position, Status item) {
         final long tweetTime = item.getCreatedAt().getTime();
-        final CharSequence time = DateUtils.getRelativeTimeSpanString(tweetTime, System.currentTimeMillis(), DateUtils.MINUTE_IN_MILLIS, DateUtils.FORMAT_ABBREV_ALL);
+        final CharSequence time = DateUtils.getRelativeTimeSpanString(tweetTime, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS, DateUtils.FORMAT_ABBREV_ALL);
 
         Glide.with(holder.photoImageView.getContext())
                 .load(item.getUser().getOriginalProfileImageURL())

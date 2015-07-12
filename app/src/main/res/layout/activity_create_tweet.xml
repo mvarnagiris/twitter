@@ -22,6 +22,7 @@
             android:elevation="@dimen/elevation_toolbar"
             android:hint="@string/message"
             android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="140"
             android:minHeight="@dimen/actionbar_2x"
             android:padding="@dimen/keyline"
             android:theme="?themeInverse"

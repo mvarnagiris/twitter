@@ -4,4 +4,6 @@
     <integer name="screen_size">0</integer>
 
     <integer name="grid_span_count">1</integer>
+
+    <string name="transition_name_fab">transitionName:fab</string>
 </resources>

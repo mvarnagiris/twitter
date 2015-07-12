@@ -47,6 +47,12 @@ import twitter4j.TwitterException;
                                     .doOnNext(statuses -> view.setRefreshing(false))
                                     .subscribeOn(uiScheduler)
                                     .subscribe(view::showTweets, handleFatalError(view, view)));
+
+        unsubscribeOnDetach(view.onCreateTweet()
+                                    .flatMap(v -> view.startCreateTweet())
+                                    .subscribeOn(uiScheduler)
+                                    .observeOn(uiScheduler)
+                                    .subscribe(view::addTweet, handleFatalError(view, view)));
     }
 
     @NonNull private Observable<RefreshPresenterView.RefreshEvent> onRefreshEvent(@NonNull View view) {
@@ -80,7 +86,8 @@ import twitter4j.TwitterException;
     }
 
     public interface View extends PresenterView, ErrorPresenterView, CloseablePresenterView, RefreshPresenterView {
-        @NonNull Observable<Status> onTweetCreated();
+        @NonNull Observable<Void> onCreateTweet();
+        @NonNull Observable<Status> startCreateTweet();
         void showTweets(@NonNull List<Status> tweets);
         void addTweet(@NonNull Status status);
     }
