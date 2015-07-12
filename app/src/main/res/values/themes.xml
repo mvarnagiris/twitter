@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#ffc107</item>
+        <item name="colorPrimaryDark">#ffa000</item>
+        <item name="colorPrimaryLight">#ffecb3</item>
+        <item name="colorAccent">#7c4dff</item>
+        <item name="colorAccentDark">#651fff</item>
+        <item name="colorActionIcon">#212121</item>
+        <item name="colorDivider">#88333333</item>
+        <item name="colorControlHighlight">?colorAccent</item>
+        <item name="backgroundPrimary">#fdfdfd</item>
+
+        <item name="android:windowContentTransitions" tools:ignore="NewApi">true</item>
+
+        <item name="android:textColorPrimary">#212121</item>
+        <item name="android:textColorPrimaryInverse">#ffffff</item>
+        <item name="android:textColorSecondary">#727272</item>
+        <item name="android:textColorSecondaryInverse">?colorPrimaryLight</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:progressBarStyle">@style/ProgressBar</item>
+        <item name="android:scrollViewStyle">@style/ScrollView</item>
+    </style>
+
+    <!-- Default styles -->
+    <!-- =============================================================================================================================== -->
+
+    <style name="ProgressBar" parent="Widget.AppCompat.ProgressBar" />
+
+    <style name="ScrollView">
+        <item name="android:fillViewport">true</item>
+    </style>
+
+</resources>
